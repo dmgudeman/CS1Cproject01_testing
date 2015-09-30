@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 public class ShoppingBag
 {
    String FILENAME;
+   ArrayList<Integer> groceryList;
 
    public ShoppingBag(String fILENAME)
    {
@@ -20,12 +21,12 @@ public class ShoppingBag
    
    public ArrayList<Integer> getPriceOfGroceries() throws FileNotFoundException
    {
-      String filename = "resources/groceries.txt";
-      
+  
+      String filename = this.FILENAME;
       BufferedReader inFile = new BufferedReader(new FileReader(filename));
 
       //Define and initialize the ArrayList
-      ArrayList<Integer> groceryList = new ArrayList<>(); //The ArrayList stores strings
+      groceryList = new ArrayList<>(); //The ArrayList stores strings
 
       String inline; //Buffer to store the current line
       
@@ -54,10 +55,48 @@ public class ShoppingBag
    
    public ArrayList<Integer> findSubset(int budget)
    {
-      ArrayList<Integer> subset = new ArrayList<>();
-      return subset;
+      ArrayList<ArrayList<Integer>> Col = new ArrayList<>();
+     
+      
+      ArrayList<Integer> emptySet = new ArrayList<>();
+      Col.add(emptySet);
+     
+      ArrayList<Integer> theSubset = new ArrayList<>();
+      
+     //Collection Col = Collections.EMPTY_SET;
+      
+      
+      for (Integer s : groceryList)
+      {
+         for (ArrayList<Integer> c : Col )
+         {
+            
+            if (sumArrayList(c) + s <= 25 )
+            {
+               c.add(s);
+               System.out.println(c);
+            }
+            if (sumArrayList(c) + s == 25 )
+            {
+               break;
+            }
+         }
+      }
+     
+      return theSubset;
    }
    
-   
+   public Integer sumArrayList(ArrayList<Integer> listToSum)
+   {
+      
+      Integer sum = 0;
+      for (Integer I : listToSum)
+      {
+         
+         sum = sum + I;
+      }
+          
+      return sum;
+   }
    
 }
