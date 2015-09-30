@@ -12,10 +12,10 @@ public class Main
       final String FILENAME = "resources/groceries.txt"; 
 
       ShoppingBag bag = new ShoppingBag(FILENAME);
-    //  ArrayList<Integer> shoppingList = bag.getPriceOfGroceries();
-      ArrayList<String> shoppingList = bag.getPriceOfGroceries();
+      ArrayList<Integer> shoppingList = bag.getPriceOfGroceries();
+
       System.out.println("Groceries wanted:");
-   //   System.out.println(shoppingList);
+      System.out.println(shoppingList);
 
       System.out.println("Enter how much cash you have:");
       Scanner keyboard = new Scanner(System.in);

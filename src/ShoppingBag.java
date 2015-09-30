@@ -18,14 +18,14 @@ public class ShoppingBag
       FILENAME = fILENAME;
    }
    
-   public ArrayList<String> getPriceOfGroceries() throws FileNotFoundException
+   public ArrayList<Integer> getPriceOfGroceries() throws FileNotFoundException
    {
       String filename = "resources/groceries.txt";
       
       BufferedReader inFile = new BufferedReader(new FileReader(filename));
 
       //Define and initialize the ArrayList
-      ArrayList<String> groceryList = new ArrayList<String>(); //The ArrayList stores strings
+      ArrayList<Integer> groceryList = new ArrayList<>(); //The ArrayList stores strings
 
       String inline; //Buffer to store the current line
       
@@ -37,8 +37,8 @@ public class ShoppingBag
             Matcher makeMatch = intsOnly.matcher(inline);
             makeMatch.find();
             String str = makeMatch.group();
-             groceryList.add(str);
-             System.out.println(str);
+            Integer i = Integer.parseInt(str);
+            groceryList.add(i);
          }
          inFile.close(); //We've finished reading the file 
       } catch (IOException e)
