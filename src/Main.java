@@ -30,8 +30,8 @@ public class Main
       // NOTE: In this part, you only need to keep track of the price of each
       // item,
       // and not the name of the item you are buying.
-      ArrayList<Integer> purchases = bag.findSubset(budget);
-     
+      SubSet purchases = bag.findSubset(budget);
+      purchases.printSubSet(purchases);
 
       // stop and calculate elapsed time
       estimatedTime = System.nanoTime() - startTime;

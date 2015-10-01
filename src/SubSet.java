@@ -1,25 +1,29 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class SubSet implements Cloneable
 {
-   private int sumOfElements = 0;
+   private int subSetSum = 0;
    ArrayList<Integer> subSetElements = new ArrayList<>();
    ArrayList<Integer> subSetIndices;
+   
+   public SubSet() {};
 
    public SubSet(ArrayList<Integer> subSet)
    {
-      sumOfElements = 0;
+      subSetSum = 0;
       subSetElements = subSet;
       subSetIndices = new ArrayList<>();
    }
 
-   int getSumOfElements()
+   int getSubSetSum()
    {
-      return sumOfElements;
+      return subSetSum;
    }
 
    public SubSet clone() throws CloneNotSupportedException
    {
+     
       SubSet newSubSet = (SubSet) super.clone();
       newSubSet.subSetIndices = (ArrayList<Integer>) subSetIndices.clone();
       return newSubSet;
@@ -28,11 +32,14 @@ public class SubSet implements Cloneable
    public SubSet addToSubSet(int indexToAdd)
    {
       SubSet newSubSet;
+      if ( indexToAdd < 0 || indexToAdd >= subSetElements.size() )
+          return null;
+
       try
       {
          newSubSet = (SubSet) this.clone();
 
-         newSubSet.sumOfElements = newSubSet.sumOfElements
+         newSubSet.subSetSum = newSubSet.subSetSum
                + subSetElements.get(indexToAdd);
          newSubSet.subSetIndices.add(indexToAdd);
          return newSubSet;
@@ -43,11 +50,11 @@ public class SubSet implements Cloneable
       }
    }
 
-   public void printSubSet(ArrayList<Integer> subSet)
-   {
-      for (Integer i : subSet)
+   public void printSubSet(SubSet subSet)
+   {  
+      for ( int i = 0; i < ((List<Integer>) subSet).size(); i++)
       {
-         System.out.println(i);
+         System.out.println(subSet.subSetElements.get(i));
       }
    }
 

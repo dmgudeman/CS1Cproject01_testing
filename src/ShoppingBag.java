@@ -50,49 +50,46 @@ public class ShoppingBag
    }
   
    
-   public ArrayList<Integer> findSubset(int budget)
+   public SubSet findSubset(int budget)
    {
-      ArrayList<ArrayList<Integer>> Col = new ArrayList<>();
-      ArrayList<Integer> emptySet = new ArrayList<>();
+      ArrayList<SubSet> Col = new ArrayList<>();
+      SubSet emptySet = new SubSet();
       Col.add(emptySet);
-      ArrayList<Integer> theSubset = new ArrayList<>(); 
+      SubSet theSubSet = null; 
     
       
       for (Integer item : groceryList)                 
       {      
-         for ( ArrayList<Integer> c : Col )   
+         for ( int i = 0; i < Col.size(); i++ )   
          {             
-            if (listSummation(c) + item <= 25)
+            if (Col.get(i).getSubSetSum() + item <= 25)
             {  
-               ArrayList<Integer> temp = new ArrayList<Integer>();
-               temp.addAll(c);
-               temp.add(item); 
-               Col.add(temp);
+               theSubSet = new SubSet();
+               theSubSet = Col.get(i).addToSubSet(item);
+               Col.add(theSubSet);
                System.out.println(Col);
+               
             }
-            if (listSummation(c) + item == 25 )
+            if  (Col.get(i).getSubSetSum() + item == 25)
             {
-               theSubset.add(item); 
-               break;
+               return theSubSet;
+               
             }
             
          }
       
       }
      
-      return theSubset;
+      return theSubSet;
    }
    
    public Integer listSummation(ArrayList<Integer> listToSum)
-   {
-      
+   {     
       Integer sum = 0;
-      for (Integer I : listToSum)
-      {
-         
-         sum = sum + I;
-      }
-          
+      for (Integer i : listToSum)
+      {    
+         sum = sum + i;
+      }       
       return sum;
    }
    
