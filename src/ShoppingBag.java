@@ -44,49 +44,46 @@ public class ShoppingBag
          inFile.close(); //We've finished reading the file 
       } catch (IOException e)
       {
-         
          e.printStackTrace();
       }
-    
-      return groceryList;
-            
+      return groceryList;          
    }
   
    
    public ArrayList<Integer> findSubset(int budget)
    {
       ArrayList<ArrayList<Integer>> Col = new ArrayList<>();
-     
-      
       ArrayList<Integer> emptySet = new ArrayList<>();
       Col.add(emptySet);
-     
-      ArrayList<Integer> theSubset = new ArrayList<>();
+      ArrayList<Integer> theSubset = new ArrayList<>(); 
+    
       
-     //Collection Col = Collections.EMPTY_SET;
-      
-      
-      for (Integer s : groceryList)
-      {
-         for (ArrayList<Integer> c : Col )
-         {
-            
-            if (sumArrayList(c) + s <= 25 )
-            {
-               c.add(s);
-               System.out.println(c);
+      for (Integer item : groceryList)                 
+      {      
+         for ( ArrayList<Integer> c : Col )   
+         {             
+            if (listSummation(c) + item <= 25)
+            {  
+               ArrayList<Integer> temp = new ArrayList<Integer>();
+               temp.addAll(c);
+               temp.add(item); 
+               Col.add(temp);
+               System.out.println(Col);
             }
-            if (sumArrayList(c) + s == 25 )
+            if (listSummation(c) + item == 25 )
             {
+               theSubset.add(item); 
                break;
             }
+            
          }
+      
       }
      
       return theSubset;
    }
    
-   public Integer sumArrayList(ArrayList<Integer> listToSum)
+   public Integer listSummation(ArrayList<Integer> listToSum)
    {
       
       Integer sum = 0;
