@@ -6,7 +6,7 @@ import cs1c.TimeConverter;
 
 public class Main
 {
-//SHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+
    public static void main(String[] args) throws FileNotFoundException
    {
       final String FILENAME = "resources/groceries.txt"; 
@@ -30,15 +30,11 @@ public class Main
       // NOTE: In this part, you only need to keep track of the price of each
       // item,
       // and not the name of the item you are buying.
-      bag.findSubset(budget);
-     
-
-      // stop and calculate elapsed time
-      estimatedTime = System.nanoTime() - startTime;
-
       // output the result
       System.out.println("Purchased grocery prices are:");
-      
+      bag.findSubset(budget);
+      // stop and calculate elapsed time
+      estimatedTime = System.nanoTime() - startTime;
 
       // report algorithm time
       System.out.println("\nAlgorithm Elapsed Time: "
