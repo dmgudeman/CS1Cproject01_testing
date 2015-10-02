@@ -29,19 +29,18 @@ public class SubSet implements Cloneable
       return newSubSet;
    }
 
-   public SubSet addToSubSet(int indexToAdd)
+   public SubSet addToSubSet(int grocElement)
    {
       SubSet newSubSet;
-      if ( indexToAdd < 0 || indexToAdd >= subSetElements.size() )
+      if ( grocElement < 0  )
           return null;
 
       try
       {
          newSubSet = (SubSet) this.clone();
-
+        
          newSubSet.subSetSum = newSubSet.subSetSum
-               + subSetElements.get(indexToAdd);
-         newSubSet.subSetIndices.add(indexToAdd);
+               + grocElement;         
          return newSubSet;
       } catch (CloneNotSupportedException e)
       {
@@ -54,8 +53,9 @@ public class SubSet implements Cloneable
    {  
       for ( int i = 0; i < ((List<Integer>) subSet).size(); i++)
       {
-         System.out.println(subSet.subSetElements.get(i));
+         System.out.println(subSet);
       }
    }
+   
 
 }
