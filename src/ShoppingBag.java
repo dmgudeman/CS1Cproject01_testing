@@ -56,20 +56,25 @@ public class ShoppingBag
       Col = new ArrayList<>();
       ArrayList<Integer> emptySet = new ArrayList<>();
       Col.add(emptySet);
-     
-            for (Integer item : groceryList)
+      for (Integer item : groceryList)
+      {
+         int size = Col.size();
+         for (int i = 0; i < size; i++)
+         {
+            ArrayList<Integer> newSubSet = (ArrayList<Integer>) Col.get(i)
+                  .clone();
+            newSubSet.add(item);
+            if (listSummation(newSubSet) <= 25)
             {
-               int size = Col.size();
-              for (int i = 0; i < size; i++)
-              {
-               ArrayList<Integer> newSubSet = (ArrayList<Integer>) Col.get(i).clone();
-               newSubSet.add(item);
-           
                Col.add(newSubSet);
-               }
             }
-            printCol(Col);       
-      
+            if (listSummation(newSubSet) == 25)
+            {
+               printSubSet(newSubSet);
+               break;
+            }
+         }
+      }
    }
 
    public Integer listSummation(ArrayList<Integer> listToSum)
@@ -86,8 +91,10 @@ public class ShoppingBag
    {
       for (Integer a : subSet)
       {
-         System.out.print( + a + ", ");
+         System.out.print(+a + ", ");
+
       }
+      System.out.println(" sum = " + listSummation(subSet));
    }
 
    public void printCol(ArrayList<ArrayList<Integer>> Col)
