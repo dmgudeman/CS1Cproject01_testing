@@ -26,13 +26,10 @@ public class Main
       // capture start time
       startTime = System.nanoTime();
 
-      // implement finding subset of groceries that is closest to meeting budget
-      // NOTE: In this part, you only need to keep track of the price of each
-      // item,
-      // and not the name of the item you are buying.
       // output the result
       System.out.println("Purchased grocery prices are:");
       bag.findSubset(budget);
+      
       // stop and calculate elapsed time
       estimatedTime = System.nanoTime() - startTime;
 

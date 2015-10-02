@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//SHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+
 public class ShoppingBag
 {
+   Boolean foundSubSet = false;
    String FILENAME;
+   int cashOnHand;
    ArrayList<Integer> groceryList;
    ArrayList<ArrayList<Integer>> Col;
 
@@ -29,7 +31,6 @@ public class ShoppingBag
       groceryList = new ArrayList<>(); // The ArrayList stores strings
 
       String inline; // Buffer to store the current line
-
       try
       {
          while ((inline = inFile.readLine()) != null) // Read line-by-line,
@@ -53,28 +54,35 @@ public class ShoppingBag
 
    public void findSubset(int budget)
    {
+      int maxSize = 0;
       Col = new ArrayList<>();
       ArrayList<Integer> emptySet = new ArrayList<>();
       Col.add(emptySet);
       for (Integer item : groceryList)
       {
-         int size = Col.size();
-         for (int i = 0; i < size; i++)
+         if (foundSubSet == false)
          {
-            ArrayList<Integer> newSubSet = (ArrayList<Integer>) Col.get(i)
-                  .clone();
-            newSubSet.add(item);
-            if (listSummation(newSubSet) < 25)
+            int size = Col.size();
+            for (int i = 0; i < size; i++)
             {
-               Col.add(newSubSet);
-            }
-            else if (listSummation(newSubSet) == 25)
-            {
-               printSubSet(newSubSet);
-               break;
+               ArrayList<Integer> newSubSet = (ArrayList<Integer>) Col.get(i)
+                     .clone();
+               newSubSet.add(item);
+               int newSubSetSize = listSummation(newSubSet);
+               if (newSubSetSize < budget)
+               {
+                  if (newSubSetSize > maxSize)
+                     maxSize = newSubSetSize;
+                  Col.add(newSubSet);
+               }
+               if (newSubSetSize == budget)
+               {
+                  foundSubSet = true;
+                  printSubSet(newSubSet);
+                  break;
+               }
             }
          }
-        
       }
    }
 
